@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.2.3
+- Add option `endpoint_url` for usage on S3 compatible provider. Note that `bucket_region` is not used if this option is defined.
+
 ## 1.2.2
 
 - Backup Script was running twice since it was still in services.d folder. Removed all unnecessary files.

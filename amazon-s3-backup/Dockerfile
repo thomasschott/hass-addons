@@ -1,7 +1,7 @@
 ARG BUILD_FROM
 FROM ${BUILD_FROM}
 
-ENV LANG C.UTF-8
+ENV LANG=C.UTF-8
 
 COPY run.sh /
 RUN chmod a+x /run.sh
@@ -14,6 +14,6 @@ RUN apk add -v --update --no-cache \
         less \
         jq \
         && \
-    pip3 install --upgrade awscli
+    pip3 install --upgrade --break-system-packages awscli
     
 CMD [ "/run.sh" ]  
