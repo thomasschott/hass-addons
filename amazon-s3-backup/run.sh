@@ -22,10 +22,10 @@ export AWS_REGION="$bucket_region"
 bashio::log.debug "Using AWS CLI version: '$(aws --version)'"
 if bashio::var.is_empty "${endpoint_url}"; then
   bashio::log.debug "Command: 'aws s3 sync $monitor_path s3://$bucket_name/ --no-progress --region $bucket_region --storage-class $storage_class'"
-  aws s3 sync $monitor_path s3://"$bucket_name"/ --no-progress --region "$bucket_region" --storage-class "$storage_class"
+  aws s3 sync $monitor_path s3://"$bucket_name"/ --no-progress --region "$bucket_region" --storage-class "$storage_class" --delete
 else
   bashio::log.debug "Command: 'aws s3 sync $monitor_path s3://$bucket_name/ --no-progress --endpoint-url $endpoint_url  --storage-class $storage_class'"
-  aws s3 sync $monitor_path s3://"$bucket_name"/ --no-progress --endpoint-url $endpoint_url --storage-class "$storage_class"
+  aws s3 sync $monitor_path s3://"$bucket_name"/ --no-progress --endpoint-url $endpoint_url --storage-class "$storage_class" --delete
 fi
 
 if bashio::var.true "${delete_local_backups}"; then
@@ -42,4 +42,3 @@ else
 fi
 
 bashio::log.info "Finished Amazon S3 Backup."
-
